@@ -10,11 +10,20 @@ import { WeatherInfoService } from '../services/weather-info.service';
 })
 export class WeatherInfoComponent implements OnInit {
   weatherInfo: IWeatherInfo;
+  erroMsg: string;
+  isLoading: boolean;
 
-  constructor(private _weatherInfoService: WeatherInfoService) {}
+  constructor(private _weatherInfoService: WeatherInfoService) {
+    this.erroMsg = '';
+    this.isLoading = true;
+  }
 
   ngOnInit(): void {
-    this._weatherInfoService.getWeatherInfoByCity().subscribe((data) => (this.weatherInfo = data));
+    this.isLoading = true;
+    this._weatherInfoService.getWeatherInfoByCity().subscribe(
+      (data) => ((this.weatherInfo = data), (this.isLoading = false)),
+      (error) => (this.erroMsg = error)
+    );
   }
 
   getIconLink(): string {
@@ -29,7 +38,7 @@ export class WeatherInfoComponent implements OnInit {
       : moment.unix(sec).format('LT');
   }
 
-  windDegToDirection(deg): string {
+  windDegToDirection(deg: number): string {
     if (deg > 11.25 && deg < 33.75) {
       return 'NNE';
     } else if (deg > 33.75 && deg < 56.25) {
