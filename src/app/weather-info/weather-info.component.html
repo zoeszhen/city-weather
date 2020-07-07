@@ -1,0 +1,31 @@
+<h1>Wheather in {{ weatherInfo.name }} {{ weatherInfo.sys.country }}</h1>
+
+<div class="basic-info">
+  <img src="{{ getIconLink() }}" alt="weatherIcon" />
+  <div>
+    <h1>{{ weatherInfo.main.temp - 273.15 | number: '1.0-0' }}°c</h1>
+    <h2>{{ getTime() }}</h2>
+  </div>
+</div>
+<div>
+  <div class="detail-info">
+    <div class="detail-info-item">
+      <span>Sunrise</span>
+      {{ getTime(weatherInfo.sys.sunrise) }}
+    </div>
+    <div class="detail-info-item">
+      <span>Sunsent</span>
+      {{ getTime(weatherInfo.sys.sunset) }}
+    </div>
+  </div>
+  <div class="detail-info">
+    <div class="detail-info-item">
+      <span>Humdity</span>
+      {{ weatherInfo.main.humidity }}%
+    </div>
+    <div class="detail-info-item">
+      <span>Wind</span>
+      {{ weatherInfo.wind.speed }}Meter/Sec {{ windDegToDirection(weatherInfo.wind.deg) }}
+    </div>
+  </div>
+</div>
