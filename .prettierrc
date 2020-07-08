@@ -1,8 +1,0 @@
-{
-  "printWidth": 100,
-  "singleQuote": true,
-  "[javascript]": {
-    "editor.formatOnSave": true
-  },
-  "editor.formatOnSave": true
-}
