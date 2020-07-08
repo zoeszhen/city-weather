@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "deploy": "ng build --prod --base-href=/angular-ci-cd/"
   },
   "private": true,
   "dependencies": {
