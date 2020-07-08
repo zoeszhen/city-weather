@@ -14,8 +14,8 @@ import {
   IWeatherInfo,
   IBasicWeatherInfo,
   IForecastInfo,
-  IForecastBasic,
-  IForecastItemBasic,
+  IBasicForecast,
+  IBasicForecastItem,
 } from '../typings/weather-info';
 
 @Injectable({
@@ -64,9 +64,9 @@ export class WeatherInfoService {
       )
       .pipe(
         map(
-          ({ city, list }): IForecastBasic => {
+          ({ city, list }): IBasicForecast => {
             // Get following 24hours forcast
-            const forecastList: Array<IForecastItemBasic> = list
+            const forecastList: Array<IBasicForecastItem> = list
               .filter((_, i) => i < 8)
               .map(({ dt, main, weather, rain }, i) => ({
                 date: getUnixTime(dt),

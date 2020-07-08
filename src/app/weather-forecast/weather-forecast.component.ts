@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IForecastBasic } from '../typings/weather-info';
+import { IBasicForecast } from '../typings/weather-info';
 import { WeatherInfoService } from '../services/weather-info.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { WeatherInfoService } from '../services/weather-info.service';
   styleUrls: ['./weather-forecast.component.sass'],
 })
 export class WeatherForecastComponent implements OnInit {
-  forecastList: IForecastBasic;
+  forecastList: IBasicForecast;
   erroMsg: string = '';
   isLoading: boolean = true;
   //record which hourly forcast user wanna check details

@@ -42,12 +42,12 @@ export interface IBasicWeatherInfo {
 }
 
 //interface for basic weahter info rendering
-export interface IForecastBasic {
+export interface IBasicForecast {
   id: number;
-  list: Array<IForecastItemBasic>;
+  list: Array<IBasicForecastItem>;
 }
 
-export interface IForecastItemBasic {
+export interface IBasicForecastItem {
   date: string;
   temp: number;
   feelsLike: number;

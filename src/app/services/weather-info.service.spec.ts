@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { WeatherInfoService } from './weather-info.service';
 import { environment } from '../../environments/environment';
-import { IBasicWeatherInfo, IForecastBasic } from '../typings/weather-info';
+import { IBasicWeatherInfo, IBasicForecast } from '../typings/weather-info';
 
 const dummyWeatherInfo: IBasicWeatherInfo = {
   id: 1,
@@ -19,7 +19,7 @@ const dummyWeatherInfo: IBasicWeatherInfo = {
   sunrise: '5AM',
   sunset: '3PM',
 };
-const dummyforecastInfo: IForecastBasic = {
+const dummyforecastInfo: IBasicForecast = {
   id: 0,
   list: [
     {
@@ -68,7 +68,7 @@ describe('WeatherInfoService', () => {
   });
 
   describe('Get basic forecast info', () => {
-    it('should return an observable<IForecastBasic>', () => {
+    it('should return an observable<IBasicForecast>', () => {
       service.getWeatherForecast().subscribe((data) => {
         expect(data).toBe(dummyforecastInfo);
       });
