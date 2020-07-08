@@ -1,0 +1,21 @@
+<h2>24 hours Forecast</h2>
+<div class="forecast-list">
+  <div
+    class="forcast-item"
+    *ngFor="let dailyForecast of forecastList.list; index as i"
+    (mouseover)="changeText = i"
+    (mouseout)="changeText = null"
+  >
+    <div>
+      {{ dailyForecast.date }}
+    </div>
+    <img src="{{ dailyForecast.icon }}" alt="weather_icon" />
+    <div>{{ dailyForecast.temp | number: '1.0-0' }} °c</div>
+    <div class="forcast-item-details" *ngIf="changeText === i">
+      <div>{{ dailyForecast.description }}</div>
+      <div>Feels like: {{ dailyForecast.feelsLike | number: '1.0-0' }} °c</div>
+      <div>Humidity: {{ dailyForecast.humidity }}</div>
+      <div *ngIf="dailyForecast.rain">Chance of rain: {{ dailyForecast.rain }}</div>
+    </div>
+  </div>
+</div>

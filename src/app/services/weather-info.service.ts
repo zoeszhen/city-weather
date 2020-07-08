@@ -5,7 +5,13 @@ import { throwError as observableThrowError, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { IWeatherInfo, IBasicWeatherInfo } from '../typings/weather-info';
+import {
+  IWeatherInfo,
+  IBasicWeatherInfo,
+  IForecastInfo,
+  IForecastBasic,
+  IForecastItemBasic,
+} from '../typings/weather-info';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +21,9 @@ export class WeatherInfoService {
   private TARGET_CITY: string = 'Heidenheim,Germany';
   getWeatherInfoByCity() {
     return this.http
-      .get<IWeatherInfo>(`${environment.api}?q=${this.TARGET_CITY}&appid=${environment.key}`)
+      .get<IWeatherInfo>(
+        `${environment.api}/weather?q=${this.TARGET_CITY}&appid=${environment.key}`
+      )
       .pipe(
         map(
           ({ id, name, timezone, weather, main, wind, sys }): IBasicWeatherInfo => {
@@ -33,6 +41,36 @@ export class WeatherInfoService {
               wind: this.windDegToDirection(wind.speed, wind.deg),
               sunrise: this.getUnixTime(sys.sunrise),
               sunset: this.getUnixTime(sys.sunset),
+            };
+          }
+        ),
+        catchError((error) => catchError(this.erroHandler))
+      );
+  }
+
+  getWeatherForecast() {
+    return this.http
+      .get<IForecastInfo>(
+        `${environment.api}/forecast?q=${this.TARGET_CITY}&appid=${environment.key}`
+      )
+      .pipe(
+        map(
+          ({ city, list }): IForecastBasic => {
+            // Get following 24hours forcast
+            const forecastList: Array<IForecastItemBasic> = list
+              .filter((_, i) => i < 7)
+              .map(({ dt, main, weather, rain }, i) => ({
+                date: this.getUnixTime(dt),
+                temp: main.temp - 273.15,
+                feelsLike: main.feels_like - 273.15,
+                humidity: main.humidity,
+                icon: this.getIconLink(weather[0].icon),
+                description: weather[0].description,
+                rain: rain ? rain['3h'] : null,
+              }));
+            return {
+              id: city.id,
+              list: forecastList,
             };
           }
         ),
