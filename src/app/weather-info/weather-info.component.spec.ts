@@ -7,7 +7,7 @@ const dummyWeatherInfo = {
   id: 1,
   name: 'test',
   country: 'test country',
-  icon: 'test icon',
+  icon: 'http://openweathermap.org/img/wn/03d@2x.png',
   currentTime: '12.30 pm',
   weather: 'sunny',
   description: 'really sunny',

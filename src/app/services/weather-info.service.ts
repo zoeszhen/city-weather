@@ -9,7 +9,7 @@ import {
   getCurrentTime,
   getUnixTime,
   windDegToDirection,
-} from '../shared/utils/calculate';
+} from '../shared/utils/helper';
 import {
   IWeatherInfo,
   IBasicWeatherInfo,

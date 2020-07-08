@@ -11,7 +11,7 @@ const dummyforecastInfo = {
       temp: 20,
       feelsLike: 20,
       humidity: 0.43,
-      icon: 'testicon',
+      icon: 'http://openweathermap.org/img/wn/03d@2x.png',
       description: 'testDescription',
       rain: 0.5,
     },
