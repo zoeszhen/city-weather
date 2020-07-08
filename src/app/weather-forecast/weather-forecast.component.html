@@ -1,5 +1,5 @@
 <h2>24 hours Forecast</h2>
-<div class="forecast-list">
+<div class="forecast-list" *ngIf="!isLoading && erroMsg.length < 1">
   <div
     class="forcast-item"
     *ngFor="let dailyForecast of forecastList.list; index as i"
@@ -19,3 +19,5 @@
     </div>
   </div>
 </div>
+<div *ngIf="isLoading && erroMsg.length < 1">Please wait forecast is loading</div>
+<div *ngIf="erroMsg.length > 0">{{ erroMsg }}</div>

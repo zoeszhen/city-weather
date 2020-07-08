@@ -1,14 +1,14 @@
-<div *ngIf="!isLoading && erroMsg.length < 1; else loadingBlock">
+<div *ngIf="!isLoading && erroMsg.length < 1">
   <h1>Wheather in {{ weatherInfo.name }} {{ weatherInfo.country }}</h1>
+  <h2>
+    {{ weatherInfo.description }}
+  </h2>
 
   <div class="basic-info">
     <img src="{{ weatherInfo.icon }}" alt="weatherIcon" />
     <div>
       <h1>{{ weatherInfo.temp | number: '1.0-0' }}°c</h1>
       <h2>{{ weatherInfo.currentTime }}</h2>
-      <p>
-        {{ weatherInfo.description }}
-      </p>
     </div>
   </div>
   <div>
@@ -35,6 +35,6 @@
   </div>
 </div>
 
-<ng-template #loadingBlock>Page is Loading</ng-template>
+<div *ngIf="isLoading && erroMsg.length < 1">Page is Loading</div>
 
 <div *ngIf="erroMsg.length > 0">something is wrong :({{ erroMsg }}</div>
