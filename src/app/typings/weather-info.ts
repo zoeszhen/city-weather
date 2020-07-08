@@ -1,5 +1,6 @@
 import { NullTemplateVisitor } from '@angular/compiler';
 
+//interface for fetch weather api
 export interface IWeatherInfo {
   name: string;
   id: number;
@@ -13,6 +14,22 @@ export interface IWeatherInfo {
   dt: number;
   code: number;
   main: IMain;
+}
+
+//interface for basic weahter info rendering
+export interface IBasicWeatherInfo {
+  id: number;
+  name: string;
+  country: string;
+  icon: string;
+  currentTime: string;
+  weather: string;
+  description: string;
+  temp: number;
+  humidity: number;
+  wind: string;
+  sunrise: string;
+  sunset: string;
 }
 
 interface ICountryInfo {
