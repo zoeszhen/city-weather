@@ -23,7 +23,10 @@ import {
 })
 export class WeatherInfoService {
   constructor(private http: HttpClient) {}
+  // Target city fetch weather information
   private TARGET_CITY: string = 'Heidenheim,Germany';
+
+  // get basic weather information
   getWeatherInfoByCity() {
     return this.http
       .get<IWeatherInfo>(
@@ -53,6 +56,7 @@ export class WeatherInfoService {
       .pipe(catchError(this.erroHandler));
   }
 
+  // get forecast weather information
   getWeatherForecast() {
     return this.http
       .get<IForecastInfo>(
@@ -63,7 +67,7 @@ export class WeatherInfoService {
           ({ city, list }): IForecastBasic => {
             // Get following 24hours forcast
             const forecastList: Array<IForecastItemBasic> = list
-              .filter((_, i) => i < 7)
+              .filter((_, i) => i < 8)
               .map(({ dt, main, weather, rain }, i) => ({
                 date: getUnixTime(dt),
                 temp: main.temp - 273.15,
