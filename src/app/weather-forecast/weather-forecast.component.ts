@@ -12,7 +12,7 @@ export class WeatherForecastComponent implements OnInit {
   erroMsg: string = '';
   isLoading: boolean = true;
   //record which hourly forcast user wanna check details
-  checkDetailsIndex: number = null;
+  checkDetailsIndex: number = 0;
 
   constructor(private _weatherInfoService: WeatherInfoService) {}
 

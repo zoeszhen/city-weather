@@ -1,40 +1,42 @@
-<div *ngIf="!isLoading && erroMsg.length < 1">
-  <h1>Wheather in {{ weatherInfo.name }} {{ weatherInfo.country }}</h1>
-  <h2>
-    {{ weatherInfo.description }}
-  </h2>
+<div class="weather">
+  <div *ngIf="!isLoading && erroMsg.length < 1">
+    <h1>Wheather in {{ weatherInfo.name }} {{ weatherInfo.country }}</h1>
+    <h2>
+      {{ weatherInfo.description }}
+    </h2>
 
-  <div class="basic-info">
-    <img src="{{ weatherInfo.icon }}" alt="weatherIcon" />
+    <div class="basic-info">
+      <img src="{{ weatherInfo.icon }}" alt="weatherIcon" />
+      <div>
+        <h1>{{ weatherInfo.temp | number: '1.0-0' }}°c</h1>
+        <h2>{{ weatherInfo.currentTime }}</h2>
+      </div>
+    </div>
     <div>
-      <h1>{{ weatherInfo.temp | number: '1.0-0' }}°c</h1>
-      <h2>{{ weatherInfo.currentTime }}</h2>
-    </div>
-  </div>
-  <div>
-    <div class="detail-info">
-      <div class="detail-info-item">
-        <span>Sunrise</span>
-        {{ weatherInfo.sunrise }}
+      <div class="detail-info">
+        <div class="detail-info-item">
+          <span>Sunrise</span>
+          {{ weatherInfo.sunrise }}
+        </div>
+        <div class="detail-info-item">
+          <span>Sunsent</span>
+          {{ weatherInfo.sunset }}
+        </div>
       </div>
-      <div class="detail-info-item">
-        <span>Sunsent</span>
-        {{ weatherInfo.sunset }}
-      </div>
-    </div>
-    <div class="detail-info">
-      <div class="detail-info-item">
-        <span>Humdity</span>
-        {{ weatherInfo.humidity }}%
-      </div>
-      <div class="detail-info-item">
-        <span>Wind</span>
-        {{ weatherInfo.wind }}
+      <div class="detail-info">
+        <div class="detail-info-item">
+          <span>Humdity</span>
+          {{ weatherInfo.humidity }}%
+        </div>
+        <div class="detail-info-item">
+          <span>Wind</span>
+          {{ weatherInfo.wind }}
+        </div>
       </div>
     </div>
   </div>
+
+  <div *ngIf="isLoading && erroMsg.length < 1">Page is Loading</div>
+
+  <div *ngIf="erroMsg.length > 0">something is wrong :({{ erroMsg }}</div>
 </div>
-
-<div *ngIf="isLoading && erroMsg.length < 1">Page is Loading</div>
-
-<div *ngIf="erroMsg.length > 0">something is wrong :({{ erroMsg }}</div>
